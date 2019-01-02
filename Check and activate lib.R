@@ -108,5 +108,5 @@ for (i in pituus3){
     
   },error=function(e){cat("Virhe:",conditionMessage(e), "\n")})
 }
-rm(list = ls())
+rm(list=c("kansio","ip","kaikki_paketit","pituus3","i")) 
 print("Packets loaded, environment cleaned")
