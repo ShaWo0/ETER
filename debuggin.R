@@ -1,3 +1,33 @@
+df1 <- head(df,2000)
+
+##### Päivitä fromJSON ja muut check scriptissä olevat ja testaa alla oleva ####
+bas_df <- as.data.frame(df1[["BAS"]]) %>% flatten()
+geo_df <- as.data.frame(df1[["GEO"]]) %>% flatten()
+exp_df <- as.data.frame(df1[["EXP"]]) %>% flatten() 
+rev_df <- as.data.frame(df1[["REV"]]) %>% flatten()
+sta_df <- as.data.frame(df1[["STA"]]) %>% flatten()
+stud_df <- as.data.frame(df1[["STUD"]]) %>% flatten()
+grad_df <- as.data.frame(df1[["GRAD"]]) %>% flatten()
+res_df <- as.data.frame(df1[["RES"]]) %>% flatten()
+ind_df <- as.data.frame(df1[["IND"]]) %>% flatten()
+demo_df <- as.data.frame(df1[["DEMO"]]) %>% flatten()
+era_df <- as.data.frame(df1[["ERA"]]) %>% flatten()
+
+exp_df2 <- names(exp_df)
+
+write_csv2(bas_df,"C:/temp/R/bas.csv")
+write_csv2(geo_df,"C:/temp/R/geo.csv")
+write_csv2(exp_df,"C:/temp/R/exp.csv")
+write_csv2(rev_df,"C:/temp/R/rev.csv")
+write_csv2(sta_df,"C:/temp/R/sta.csv")
+write_csv2(stud_df,"C:/temp/R/stud.csv")
+write_csv2(grad_df,"C:/temp/R/grad.csv")
+write_csv2(res_df,"C:/temp/R/res.csv")
+write_csv2(ind_df,"C:/temp/R/ind.csv")
+write_csv2(demo_df,"C:/temp/R/demo.csv")
+write_csv2(era_df,"C:/temp/R/era.csv")
+
+
 ind_df <- as.data.frame(matrix(names(unlist(df[[1]][["IND"]])), ncol = length(unlist(df[[1]][["IND"]])), byrow = TRUE), stringsAsFactors = FALSE) %>% mutate_all(as.character)
 colnames(ind_df) <- ind_df[1,]
 ind_df$id <- as.character("")

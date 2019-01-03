@@ -1,7 +1,11 @@
 
 df<-fromJSON("http://www.eter-project.com/api/3.0/HEIs/full")
+
+
 #df <- fromJSON("C:/temp/eter.json")
-write_json(df, "C:/temp/eter.json")
+#df <- fromJSON("C:/temp/R/eter.json")
+#write_json(df, "C:/temp/eter.json")
+#write_json(df, "C:/temp/R/eter.json") 
 
 #gethei <- fromJSON("http://www.eter-project.com/api/3.0/HEIs/getHEI?id=") #id kentästä df[[1]][["_id]], yksittäisen vuoden ja yhden korkeakoulun hakeminen
 
