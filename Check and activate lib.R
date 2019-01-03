@@ -97,16 +97,17 @@ ip <- as.data.frame(installed.packages()[,c(1,3:4)])
 rownames(ip) <- NULL
 ip <- ip %>% filter(ip$Priority=='recommended'|is.na(ip$Priority)) #vanha versio: #ip <- ip[is.na(ip$Priority),1:2,drop=FALSE]
 ip$Priority <- replace_na(ip$Priority,"User installed")
-print(ip, row.names=FALSE)
+#print(ip, row.names=FALSE) #Käytä tätä jos haluat nähdä listan paketeista ja versioista
 
 kaikki_paketit<- as.list(as.character(ip[,1])) #paketit[,1]
-pituus3 <- c(1:length(kaikki_paketit))
-for (i in pituus3){
+paketti_pituus <- c(1:length(kaikki_paketit))
+for (i in paketti_pituus){
   tryCatch({
     library(kaikki_paketit[[i]],character.only = T, lib.loc = kansio)
     print(paste("paketti",i,":",kaikki_paketit[[i]]," asennettu"))
     
   },error=function(e){cat("Virhe:",conditionMessage(e), "\n")})
 }
-rm(list=c("kansio","ip","kaikki_paketit","pituus3","i")) 
+unlist(kaikki_paketit)
+rm(list=c("kansio","ip","kaikki_paketit","paketti_pituus")) 
 print("Packets loaded, environment cleaned")
