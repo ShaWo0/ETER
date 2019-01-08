@@ -1,9 +1,12 @@
 df1 <- head(df,2000)
+df2 <- head(FullEter,100)
+
+df3 <- as.data.frame(df2)
 
 ##### Päivitä fromJSON ja muut check scriptissä olevat ja testaa alla oleva ####
 bas_df <- as.data.frame(df1[["BAS"]]) %>% flatten()
 geo_df <- as.data.frame(df1[["GEO"]]) %>% flatten()
-exp_df <- as.data.frame(df1[["EXP"]]) %>% flatten() 
+exp_df <- df2[["EXP"]]  %>% as.data.frame()
 rev_df <- as.data.frame(df1[["REV"]]) %>% flatten()
 sta_df <- as.data.frame(df1[["STA"]]) %>% flatten()
 stud_df <- as.data.frame(df1[["STUD"]]) %>% flatten()
@@ -63,3 +66,8 @@ ind_t$V1 <- gsub("\\)","",ind_t$V1)
 ind_t<-as.data.frame(t(ind_t)) %>% mutate_all(as.character)
 ind_t$id <- as.character(df[[i]][["_id"]])
 ind_df<-rbind(ind_df,ind_t)
+
+rm(list=c("stud_df","stud_df_empty","stud_t","sta_df","sta_df_empty","sta_t",
+          "rev_df","rev_df_empty","rev_t","res_df","res_df_empty","res_t","ind_df","ind_df_empty","ind_t",
+          "grad_df","grad_df_empty","grad_t","geo_df","geo_df_empty","geo_t","era_df","era_df_empty","era_t",
+          "demo_df","demo_df_empty","demo_t"))
