@@ -1,10 +1,12 @@
 df1 <- head(df,2000)
 df2 <- head(FullEter,100)
+df3 <- as.matrix(df2)
+df3 <- as.data.frame(df3)
 
-df3 <- as.data.frame(df2)
+
 
 ##### Päivitä fromJSON ja muut check scriptissä olevat ja testaa alla oleva ####
-bas_df <- as.data.frame(df1[["BAS"]]) %>% flatten()
+bas_df <- as.data.frame(df1[["BAS"]])
 geo_df <- as.data.frame(df1[["GEO"]]) %>% flatten()
 exp_df <- df2[["EXP"]]  %>% as.data.frame()
 rev_df <- as.data.frame(df1[["REV"]]) %>% flatten()
@@ -29,7 +31,7 @@ write_csv2(res_df,"C:/temp/R/res.csv")
 write_csv2(ind_df,"C:/temp/R/ind.csv")
 write_csv2(demo_df,"C:/temp/R/demo.csv")
 write_csv2(era_df,"C:/temp/R/era.csv")
-
+write_csv2(df3,"C:/temp/eter/fulleter_head100.csv")
 
 ind_df <- as.data.frame(matrix(names(unlist(df[[1]][["IND"]])), ncol = length(unlist(df[[1]][["IND"]])), byrow = TRUE), stringsAsFactors = FALSE) %>% mutate_all(as.character)
 colnames(ind_df) <- ind_df[1,]
@@ -70,4 +72,4 @@ ind_df<-rbind(ind_df,ind_t)
 rm(list=c("stud_df","stud_df_empty","stud_t","sta_df","sta_df_empty","sta_t",
           "rev_df","rev_df_empty","rev_t","res_df","res_df_empty","res_t","ind_df","ind_df_empty","ind_t",
           "grad_df","grad_df_empty","grad_t","geo_df","geo_df_empty","geo_t","era_df","era_df_empty","era_t",
-          "demo_df","demo_df_empty","demo_t"))
+          "demo_df","demo_df_empty","demo_t","bas_df","bas_df_empty","bas_t","exp_df","exp_df_empty","exp_t"))

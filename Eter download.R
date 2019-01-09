@@ -285,4 +285,5 @@ print(paste("Ajaminen kesti ",Kesto))
 #rm(list=c("a","b","BAS","bas","BAS_t","bas17df","bas42","l","tempdf","tempdf18","tempdf2","TRA","bas17","bas_18"))
 #rm(list=c(bas_df,geo_df,era_df,exp_df,grad_df,ind_df,res_df,rev_df,sta_df,stud_df)) #poista data framet 
 #rm(list=c(bas_t,geo_t,era_t,exp_t,grad_t,ind_t,res_t,rev_t,sta_t,stud_t)) #poista temp data framet
+#rm(list=c("demo_id","era_id","exp_id","geo_id","grad_id","i","id_lista","ind_id","PI","Pituus","Pituus1","res_id","rev_id","sta_id","stud_id"))
 
