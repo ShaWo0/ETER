@@ -1,10 +1,15 @@
 ##### ETER FULL DOWNLOAD R3.5.2 ja uusin jsonlite #####
+Loopin_alku <- Sys.time() #Tallennetaan aloitusaika
 
-paa10 <- head(FullEter,1000) %>% as.matrix() %>% as.data.frame()
+FullEter <- fromJSON("http://www.eter-project.com/api/3.0/HEIs/full") #Ladataan koko eter aineisto
+#write_json(FullEter, "C:/temp/FullEter.json") #Kirjoitetaan json talteen
 
-fulleter_df <- FullEter %>% as.matrix() %>% as.data.frame()
+#paa10 <- head(FullEter,1000) %>% as.matrix() %>% as.data.frame() #Testausta varten head
 
-Loopin_alku <- Sys.time() #Tallennetaan aikaa varten aloitusaika
+fulleter_df <- FullEter %>% as.matrix() %>% as.data.frame() 
+
+##### Luetaan eri osa-alueet omiin dataframeihin. #####
+#ID toimii aineistojen välillä avaimena. Vastaa eteridyear kenttää. 
 
 bas <- fulleter_df %>% select(.,matches('BAS|_id'))
 geo <- fulleter_df %>% select(.,matches('GEO|_id'))
@@ -18,6 +23,7 @@ ind <- fulleter_df %>% select(.,matches('IND|_id'))
 demo <- fulleter_df %>% select(.,matches('DEMO|_id'))
 era <- fulleter_df %>% select(.,matches('ERA|_id'))
 
+##### Kirjoitetaan csv-tiedostot #####
 write.csv2(bas,"C:/temp/eter_bas.csv",row.names = FALSE)
 print("Kirjoitettu eter_bas.csv")
 write.csv2(geo,"C:/temp/eter_geo.csv",row.names = FALSE)
@@ -41,12 +47,11 @@ print("Kirjoitettu eter_demo.csv")
 write.csv2(era,"C:/temp/eter_era.csv",row.names = FALSE)
 print("Kirjoitettu eter_era.csv")
 
-Loopin_loppu <- Sys.time() #Tallennetaan aikaa varten lopetusaika
-Kesto <- Loopin_loppu-Loopin_alku
-print(paste("Ajaminen kesti ",Kesto))
 
 
 ##### field list #####
+#Luetaan kenttien kuvailutiedot, jossa myös selitteet koodeille. Kirjoitetaan niistä csv:t
+
 All_fields <- fromJSON("https://www.eter-project.com/api/3.0/field-groups/find/all-fields")
 
 df <- All_fields[[2]] %>%select(.,c(fieldIds,groupName,description,fields))
@@ -73,3 +78,9 @@ write.csv2(res_descriptions,"C:/temp/eter_res_descriptions.csv",row.names = FALS
 write.csv2(ind_descriptions,"C:/temp/eter_ind_descriptions.csv",row.names = FALSE)
 write.csv2(demo_descriptions,"C:/temp/eter_demo_descriptions.csv",row.names = FALSE)
 write.csv2(era_descriptions,"C:/temp/eter_era_descriptions.csv",row.names = FALSE)
+
+
+##### Kesto #####
+Loopin_loppu <- Sys.time() #Tallennetaan aikaa varten lopetusaika
+Kesto <- Loopin_loppu-Loopin_alku
+print(paste("Ajaminen kesti ",Kesto))
