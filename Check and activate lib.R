@@ -110,7 +110,7 @@ for (i in paketti_pituus){
   },error=function(e){cat("Virhe:",conditionMessage(e), "\n")})
 }
 unlist(kaikki_paketit)
-rm(list=c("kansio","ip","kaikki_paketit","paketti_pituus")) 
+rm(list=c("kansio","ip","kaikki_paketit","paketti_pituus","i")) 
 print("Packets loaded, environment cleaned")
 
 #### Update ####

@@ -73,3 +73,5 @@ rm(list=c("stud_df","stud_df_empty","stud_t","sta_df","sta_df_empty","sta_t",
           "rev_df","rev_df_empty","rev_t","res_df","res_df_empty","res_t","ind_df","ind_df_empty","ind_t",
           "grad_df","grad_df_empty","grad_t","geo_df","geo_df_empty","geo_t","era_df","era_df_empty","era_t",
           "demo_df","demo_df_empty","demo_t","bas_df","bas_df_empty","bas_t","exp_df","exp_df_empty","exp_t"))
+rm(list=c("df","df1"))
+rm(list=ls())

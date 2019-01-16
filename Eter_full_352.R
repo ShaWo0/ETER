@@ -6,22 +6,22 @@ FullEter <- fromJSON("http://www.eter-project.com/api/3.0/HEIs/full") #Ladataan 
 
 #paa10 <- head(FullEter,1000) %>% as.matrix() %>% as.data.frame() #Testausta varten head
 
-fulleter_df <- FullEter %>% as.matrix() %>% as.data.frame() 
+fulleter_df <- FullEter %>% as.matrix() %>% as.data.frame()
 
 ##### Luetaan eri osa-alueet omiin dataframeihin. #####
 #ID toimii aineistojen välillä avaimena. Vastaa eteridyear kenttää. 
 
-bas <- fulleter_df %>% select(.,matches('BAS|_id'))
-geo <- fulleter_df %>% select(.,matches('GEO|_id'))
-exp <- fulleter_df %>% select(.,matches('EXP|_id'))
-rev <- fulleter_df %>% select(.,matches('REV|_id'))
-sta <- fulleter_df %>% select(.,matches('STA|_id'))
-stud <- fulleter_df %>% select(.,matches('STUD|_id'))
-grad <- fulleter_df %>% select(.,matches('GRAD|_id'))
-res <- fulleter_df %>% select(.,matches('RES|_id'))
-ind <- fulleter_df %>% select(.,matches('IND|_id'))
-demo <- fulleter_df %>% select(.,matches('DEMO|_id'))
-era <- fulleter_df %>% select(.,matches('ERA|_id'))
+bas <- fulleter_df %>% select(.,starts_with('_id'),starts_with('BAS.'))
+geo <- fulleter_df %>% select(.,starts_with('_id'),starts_with('GEO.'))
+exp <- fulleter_df %>% select(.,starts_with('_id'),starts_with('EXP.'))
+rev <- fulleter_df %>% select(.,starts_with('_id'),starts_with('REV.'))
+sta <- fulleter_df %>% select(.,starts_with('_id'),starts_with('STA.'))
+stud <- fulleter_df %>% select(.,starts_with('_id'),starts_with('STUD.'))
+grad <- fulleter_df %>% select(.,starts_with('_id'),starts_with('GRAD.'))
+res <- fulleter_df %>% select(.,starts_with('_id'),starts_with('RES.'))
+ind <- fulleter_df %>% select(.,starts_with('_id'),starts_with('IND.'))
+demo <- fulleter_df %>% select(.,starts_with('_id'),starts_with('DEMO.'))
+era <- fulleter_df %>% select(.,starts_with('_id'),starts_with('ERA.'))
 
 ##### Kirjoitetaan csv-tiedostot #####
 write.csv2(bas,"C:/temp/eter_bas.csv",row.names = FALSE)
