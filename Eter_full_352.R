@@ -1,3 +1,16 @@
+kansio <- .libPaths()
+ip <- as.data.frame(installed.packages()[,c(1,3:4)])
+rownames(ip) <- NULL
+kaikki_paketit<- as.list(as.character(ip[,1])) #paketit[,1]
+paketti_pituus <- c(1:length(kaikki_paketit))
+for (i in paketti_pituus){
+  tryCatch({
+    library(kaikki_paketit[[i]],character.only = T, lib.loc = kansio)
+    print(paste("paketti",i,":",kaikki_paketit[[i]]," asennettu"))
+    
+  },error=function(e){cat("Virhe:",conditionMessage(e), "\n")})
+}
+
 ##### ETER FULL DOWNLOAD R3.5.2 ja uusin jsonlite #####
 Loopin_alku <- Sys.time() #Tallennetaan aloitusaika
 
@@ -67,6 +80,14 @@ rev_descriptions <- df %>% filter(description=="REV") %>% flatten() %>% as.data.
 sta_descriptions <- df %>% filter(description=="STA") %>% flatten() %>% as.data.frame %>% .[2:length(.)]
 stud_descriptions <- df %>% filter(description=="STUD") %>% flatten() %>% as.data.frame %>% .[2:length(.)]
 
+df_allfields <- stud_descriptions %>% as.data.frame() %>% .[0,]
+descriptions <- c(bas_descriptions,demo_descriptions,era_descriptions,exp_descriptions,
+                  geo_descriptions,grad_descriptions,ind_descriptions,res_descriptions,
+                  rev_descriptions,sta_descriptions,stud_descriptions)
+df_allfields <- rbind.fill(bas_descriptions,demo_descriptions,era_descriptions,exp_descriptions,
+                           geo_descriptions,grad_descriptions,ind_descriptions,res_descriptions,
+                           rev_descriptions,sta_descriptions,stud_descriptions)
+
 write.csv2(bas_descriptions,"C:/temp/eter_bas_descriptions.csv",row.names = FALSE)
 write.csv2(geo_descriptions,"C:/temp/eter_geo_descriptions.csv",row.names = FALSE)
 write.csv2(exp_descriptions,"C:/temp/eter_exp_descriptions.csv",row.names = FALSE)
@@ -79,7 +100,7 @@ write.csv2(ind_descriptions,"C:/temp/eter_ind_descriptions.csv",row.names = FALS
 write.csv2(demo_descriptions,"C:/temp/eter_demo_descriptions.csv",row.names = FALSE)
 write.csv2(era_descriptions,"C:/temp/eter_era_descriptions.csv",row.names = FALSE)
 
-
+write.csv2(df_allfields,"C:/temp/eter_allfields.csv",row.names = FALSE)
 ##### Kesto #####
 Loopin_loppu <- Sys.time() #Tallennetaan aikaa varten lopetusaika
 Kesto <- Loopin_loppu-Loopin_alku

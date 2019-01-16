@@ -92,11 +92,11 @@ for (i in pituus2){
 ##### Viimeisin versio #####
 
 
-kansio <- "C:/R-3.5.2/library"
+kansio <- .libPaths()#"C:/R-3.5.2/library"
 # Luetaan mitkä paketit asennettuna ja aktivoidaan ne
 ip <- as.data.frame(installed.packages()[,c(1,3:4)])
 rownames(ip) <- NULL
-ip <- ip %>% filter(ip$Priority=='recommended'|is.na(ip$Priority)) #vanha versio: #ip <- ip[is.na(ip$Priority),1:2,drop=FALSE]
+ip <- filter(ip$Priority=='recommended'|is.na(ip$Priority)) #vanha versio: #ip <- ip[is.na(ip$Priority),1:2,drop=FALSE]
 ip$Priority <- replace_na(ip$Priority,"User installed")
 #print(ip, row.names=FALSE) #Käytä tätä jos haluat nähdä listan paketeista ja versioista
 
