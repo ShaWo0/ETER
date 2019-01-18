@@ -80,27 +80,26 @@ rev_descriptions <- df %>% filter(description=="REV") %>% flatten() %>% as.data.
 sta_descriptions <- df %>% filter(description=="STA") %>% flatten() %>% as.data.frame %>% .[2:length(.)]
 stud_descriptions <- df %>% filter(description=="STUD") %>% flatten() %>% as.data.frame %>% .[2:length(.)]
 
-df_allfields <- stud_descriptions %>% as.data.frame() %>% .[0,]
 descriptions <- c(bas_descriptions,demo_descriptions,era_descriptions,exp_descriptions,
                   geo_descriptions,grad_descriptions,ind_descriptions,res_descriptions,
                   rev_descriptions,sta_descriptions,stud_descriptions)
-df_allfields <- rbind.fill(bas_descriptions,demo_descriptions,era_descriptions,exp_descriptions,
+Allfield_descriptions <- rbind.fill(bas_descriptions,demo_descriptions,era_descriptions,exp_descriptions,
                            geo_descriptions,grad_descriptions,ind_descriptions,res_descriptions,
                            rev_descriptions,sta_descriptions,stud_descriptions)
 
-write.csv2(bas_descriptions,"C:/temp/eter_bas_descriptions.csv",row.names = FALSE)
-write.csv2(geo_descriptions,"C:/temp/eter_geo_descriptions.csv",row.names = FALSE)
-write.csv2(exp_descriptions,"C:/temp/eter_exp_descriptions.csv",row.names = FALSE)
-write.csv2(rev_descriptions,"C:/temp/eter_rev_descriptions.csv",row.names = FALSE)
-write.csv2(sta_descriptions,"C:/temp/eter_sta_descriptions.csv",row.names = FALSE)
-write.csv2(stud_descriptions,"C:/temp/eter_stud_descriptions.csv",row.names = FALSE)
-write.csv2(grad_descriptions,"C:/temp/eter_grad_descriptions.csv",row.names = FALSE)
-write.csv2(res_descriptions,"C:/temp/eter_res_descriptions.csv",row.names = FALSE)
-write.csv2(ind_descriptions,"C:/temp/eter_ind_descriptions.csv",row.names = FALSE)
-write.csv2(demo_descriptions,"C:/temp/eter_demo_descriptions.csv",row.names = FALSE)
-write.csv2(era_descriptions,"C:/temp/eter_era_descriptions.csv",row.names = FALSE)
+#write.csv2(bas_descriptions,"C:/temp/eter_bas_descriptions.csv",row.names = FALSE)
+#write.csv2(geo_descriptions,"C:/temp/eter_geo_descriptions.csv",row.names = FALSE)
+#write.csv2(exp_descriptions,"C:/temp/eter_exp_descriptions.csv",row.names = FALSE)
+#write.csv2(rev_descriptions,"C:/temp/eter_rev_descriptions.csv",row.names = FALSE)
+#write.csv2(sta_descriptions,"C:/temp/eter_sta_descriptions.csv",row.names = FALSE)
+#write.csv2(stud_descriptions,"C:/temp/eter_stud_descriptions.csv",row.names = FALSE)
+#write.csv2(grad_descriptions,"C:/temp/eter_grad_descriptions.csv",row.names = FALSE)
+#write.csv2(res_descriptions,"C:/temp/eter_res_descriptions.csv",row.names = FALSE)
+#write.csv2(ind_descriptions,"C:/temp/eter_ind_descriptions.csv",row.names = FALSE)
+#write.csv2(demo_descriptions,"C:/temp/eter_demo_descriptions.csv",row.names = FALSE)
+#write.csv2(era_descriptions,"C:/temp/eter_era_descriptions.csv",row.names = FALSE)
 
-write.csv2(df_allfields,"C:/temp/eter_allfields.csv",row.names = FALSE)
+write.csv2(Allfield_descriptions,"C:/temp/eter_allfields.csv",row.names = FALSE)
 ##### Kesto #####
 Loopin_loppu <- Sys.time() #Tallennetaan aikaa varten lopetusaika
 Kesto <- Loopin_loppu-Loopin_alku
